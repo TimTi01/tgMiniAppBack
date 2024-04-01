@@ -1,6 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
 const cors = require('cors');
+require('dotenv').config()
 
 const token = process.env.TOKEN;
 const webAppUrl = process.env.WEBAPPURL;
@@ -27,6 +28,10 @@ bot.on('message', async (msg) => {
     });
   }
 });
+
+app.get('/', (req, res) => {
+  res.send('Server working!');
+})
 
 app.post('/get-payment-slip', async (req, res) => {
   const {queryId, totalPrice} = req.body;
@@ -58,4 +63,6 @@ app.post('/get-payment-slip', async (req, res) => {
 })
 
 const port = process.env.PORT || 8000;
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+app.listen(port, () => {
+  console.log(`Server started on port ${port}`)
+});
