@@ -28,8 +28,7 @@ bot.on('message', async (msg) => {
 });
 
 app.get('/', (req, res) => {
-  res.send('Server working!');
-  res.send('token: ', token)
+  return res.status(200).send(`Server working! token: ${token}`)
 })
 
 app.post('/get-payment-slip', async (req, res) => {
@@ -65,5 +64,4 @@ const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`)
-  res.send(`Server started on port ${port}`)
 });
