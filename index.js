@@ -16,8 +16,6 @@ bot.on('message', async (msg) => {
   const chatId = msg.chat.id;
   const text = msg.text;
 
-  bot.sendMessage(chatId, 'Received your message');
-
   if (text === '/start') {
     await bot.sendMessage(chatId, 'Добро пожаловать! \n\n Для начала заправки нажмите кнопку ниже', {
       reply_markup: {
@@ -31,6 +29,7 @@ bot.on('message', async (msg) => {
 
 app.get('/', (req, res) => {
   res.send('Server working!');
+  res.send('token: ', token)
 })
 
 app.post('/get-payment-slip', async (req, res) => {
@@ -63,6 +62,8 @@ app.post('/get-payment-slip', async (req, res) => {
 })
 
 const port = process.env.PORT || 8000;
+
 app.listen(port, () => {
   console.log(`Server started on port ${port}`)
+  res.send(`Server started on port ${port}`)
 });
