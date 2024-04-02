@@ -12,6 +12,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+const port = process.env.PORT || 8000;
+
 bot.on('message', async (msg) => {
   const chatId = msg.chat.id;
   const text = msg.text;
@@ -28,7 +30,7 @@ bot.on('message', async (msg) => {
 });
 
 app.get('/', (req, res) => {
-  return res.status(200).send(`Server working! token: ${token}`)
+  return res.status(200).send(`Server working! port: ${port}, token: ${token}`)
 })
 
 app.post('/get-payment-slip', async (req, res) => {
@@ -59,8 +61,6 @@ app.post('/get-payment-slip', async (req, res) => {
   }
 
 })
-
-const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`)
